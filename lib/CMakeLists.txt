@@ -1,5 +1,6 @@
 add_library(
 happy
+    Drv2605.cpp
     Debouncer.cpp
     EdgeDetector.cpp
     PulsePlayer.cpp

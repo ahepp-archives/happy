@@ -3,7 +3,7 @@ pico_happy
     main.cpp
     PicoDin.cpp
     PicoDout.cpp
-    PicoDrv2605.cpp
+    PicoI2c.cpp
     PicoMsTimer.cpp
 )
 

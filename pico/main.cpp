@@ -4,12 +4,13 @@
 
 #include "PicoDin.h"
 #include "PicoDout.h"
-#include "PicoDrv2605.h"
+#include "PicoI2c.h"
 #include "PicoMsTimer.h"
 
 #include "Debouncer.h"
 #include "Dtee.h"
 #include "Dsplit.h"
+#include "Drv2605.h"
 #include "Pulse.h"
 #include "PulsePlayer.h"
 #include "PulseRecorder.h"
@@ -18,6 +19,11 @@
 #include "SquareWavePlayer.h"
 
 using namespace happy;
+
+
+#define I2C_PORT i2c0
+constexpr uint I2C_SDA_PIN = 16;
+constexpr uint I2C_SCL_PIN = 17;
 
 constexpr uint BUTTON_0_PIN = 15;
 constexpr uint BUTTON_1_PIN = 14;
@@ -51,7 +57,8 @@ int main() {
     EdgeDetector e0 {in};
     EdgeDetector e1 {d1};
 
-    PicoDrv2605 driver;
+    PicoI2c i {I2C_PORT, I2C_SDA_PIN, I2C_SCL_PIN};
+    Drv2605 driver(i);
     Dsplit out {driver, led}; // mirror digital output driver state on the LED
 
     Pulse *head = nullptr;
