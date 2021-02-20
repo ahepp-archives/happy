@@ -9,6 +9,11 @@ add_executable(
         PulsePlayerTests.cpp
         SquareWavePlayerTests.cpp
 )
+target_include_directories(
+    happy_tests
+        PRIVATE
+            fakes
+)
 target_link_libraries(
     happy_tests
         PRIVATE
